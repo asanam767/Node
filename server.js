@@ -12,7 +12,9 @@ mongodbconnection("mongodb://127.0.0.1:27017/hotels").then(()=>{
   })
 
 app.use(bodyParser.json()); 
-
+app.get('/hello',(req,res) =>{
+    res.send("katta manasa")
+})
 app.get('/', function (req, res) {
     res.send('Welcome to my hotel... How i can help you ?, we have list of menus')
     })
