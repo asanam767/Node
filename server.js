@@ -3,6 +3,18 @@ const app = express();
 const db=require('./db');
 const Person=require('./models/Person');
 const bodyParser=require('body-parser');
+const {mongodbconnection} = require('./db.js')
+
+
+
+mongodbconnection("mongodb://127.0.0.1:27017/Youtubenode").then(()=>{
+    console.log("Database Connected");
+  })
+
+
+
+
+
 app.use(bodyParser.json()); 
 //this will get stored in req.body
 //with this we will perform all the database operations
