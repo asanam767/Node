@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//establishing connection
 // Define the MongoDB connection URL
 const mongoURL = 'mongodb://localhost:27017/hotels';
 
