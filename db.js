@@ -16,6 +16,7 @@
 
 
 const mongoose = require("mongoose");
+const url = 'mongodb://localhost:27017/hotels';
 
 async function mongodbconnection(url){
     return mongoose.connect(url)

@@ -32,7 +32,7 @@ const personSchema=new mongoose.Schema({
 
 });
 //Create Person model
-const Person=mongoose.model('Person',personSchema);
+const  Person =mongoose.model('Person',personSchema);
 //Then we export our model
 //We will import this model in our server.js file
 module.exports=Person;
