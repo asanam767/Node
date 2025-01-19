@@ -26,7 +26,7 @@ const menuItemSchema = new mongoose.Schema({
     default: 0,
   }
 });
-
+//comment added
 const MenuItem = mongoose.model('MenuItem', menuItemSchema);
 
 module.exports = MenuItem;
