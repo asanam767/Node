@@ -16,7 +16,10 @@
 
 
 const mongoose = require("mongoose");
-const url = 'mongodb://localhost:27017/hotels';
+//this is my local url , where we are connecting to the local database
+// const url = 'mongodb://localhost:27017/hotels';
+//here we are connecting to the online cluster that we have set up - used in deploying 
+const url="mongodb+srv://asanam767:<saiprasanna767>@cluster0.aqddc.mongodb.net/"
 
 async function mongodbconnection(url){
     return mongoose.connect(url)
