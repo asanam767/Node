@@ -32,7 +32,8 @@ const menuRoutes=require('./routes/menuRoutes');
 //use the routers
 app.use('/person',personRoutes);
 app.use('/menu',menuRoutes);
-
+ // Create and save data (assuming you've defined a model)
+  
 app.listen(4000, () => {
   console.log("listening on port 4000");
 });

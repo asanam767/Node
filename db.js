@@ -13,8 +13,6 @@
 // // Export your database connection
 // module.exports = db;
 
-
-
 const mongoose = require("mongoose");
 //this is my local url , where we are connecting to the local database
 // const url = 'mongodb://localhost:27017/hotels';
