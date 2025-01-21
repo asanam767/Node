@@ -4,36 +4,36 @@ const bodyParser = require("body-parser");
 const { mongodbconnection } = require("./db.js");
 const { userdetails, getdetails } = require("./controllers/user.js");
 
-mongodbconnection("mongodb://127.0.0.1:27017/admin").then(() => {
-  console.log("Database Connected");
-});
+require("dotenv").config();
+
+// ✅ Connect to MongoDB
+mongodbconnection().then(() => {
+  console.log("✅ Database Connected");
+}).catch(err => console.error("❌ Database Connection Failed:", err));
 
 app.use(bodyParser.json());
+
+// Routes
 app.get("/hello", (req, res) => {
   res.send("katta manasa");
 });
+
 app.get("/", function (req, res) {
   res.send("Welcome to my hotel... How I can help you?");
 });
 
 app.get("/getdetail", getdetails);
-
-//Post route to add a Person
 app.post("/persondetail", userdetails);
 
-//import the router files
+// Import and use routers
+const personRoutes = require("./routes/personRoutes");
+const menuRoutes = require("./routes/menuRoutes");
 
-//importing the personRoutes
-const personRoutes=require('./routes/personRoutes');
+app.use("/person", personRoutes);
+app.use("/menu", menuRoutes);
 
-//importing the menuRoutes
-const menuRoutes=require('./routes/menuRoutes');
-
-//use the routers
-app.use('/person',personRoutes);
-app.use('/menu',menuRoutes);
- // Create and save data (assuming you've defined a model)
-  
-app.listen(4000, () => {
-  console.log("listening on port 4000");
+// Set up the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Listening on port ${PORT}`);
 });
