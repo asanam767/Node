@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 // Get the MongoDB connection string from the .env file
-const mongoURL = process.env.DB_URL;
-//const mongoURL=process.env.DB_URL_LOCAL;
+// const mongoURL = process.env.DB_URL;
+const mongoURL=process.env.DB_URL_LOCAL;
 
 // Function to establish MongoDB connection
 async function mongodbconnection() {

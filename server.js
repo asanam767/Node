@@ -18,7 +18,14 @@ app.get("/hello", (req, res) => {
   res.send("katta manasa");
 });
 
-app.get("/", function (req, res) {
+//to implement middleware , we use a middleware function 
+const logRequest = (req, res, next) => {
+  console.log(`[${new Date().toLocaleString()}] Request Made to: ${req.originalUrl}`);
+  next();
+};
+
+//passing middleware in between
+app.get("/",logRequest, function (req, res) {
   res.send("Welcome to my hotel... How I can help you?");
 });
 
