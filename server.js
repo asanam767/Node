@@ -54,8 +54,9 @@ app.post("/persondetail", userdetails);
 const personRoutes = require("./routes/personRoutes");
 const menuRoutes = require("./routes/menuRoutes");
 
-app.use("/person",personRoutes);
+app.use("/person",localAuthMiddleware,personRoutes);
 //we want to authorize menuRoutes too , so we will be using the middleware in this case
+//we have used only for person route for now
 app.use("/menu",menuRoutes);
 
 // Set up the server
