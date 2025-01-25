@@ -62,3 +62,22 @@ When to Use What?
 ✅ Need automatic session management (handled by browsers).
 
 🚀 Conclusion: Tokens (JWT) are generally better for modern web apps and APIs because they remove database dependency. But cookies still work well for traditional session-based authentication.
+-------------------------------------------------------------------------------------------------------------------------------------
+1. **User Sends Request with Token**
+When the user logs in, they receive a token (usually a JWT).
+Every time the user makes subsequent requests to the server (for protected routes or resources), they send this token as part of the Authorization header in their request:
+makefile
+Copy
+Edit
+Authorization: Bearer <token>
+2. Server Extracts and Verifies the Token
+The server, through middleware (like the jwtAuthMiddleware you shared), extracts the token from the Authorization header.
+The server then checks if the token exists. If it doesn’t, the server sends a 401 Unauthorized response, indicating that authentication is required.
+If the token exists, the server verifies it. Typically, the server uses a secret key to verify that the token was actually issued by the server and has not been tampered with.
+If the token is valid (i.e., it hasn’t expired, and it matches the server’s secret key), the server can trust the user is authenticated.
+If the token is invalid (expired, tampered, or incorrect), the server sends a 403 Forbidden response.
+3. Proceed with the Request
+If the token is valid, the server proceeds to handle the request (e.g., retrieving data, processing an action) and sends a response back to the client.
+If the token is invalid or missing, the request is denied, and the client cannot proceed.
+Summary:
+User -> Sends token -> Server (JWT middleware) -> Verifies token -> If valid, proceed with request; if not, return error.
