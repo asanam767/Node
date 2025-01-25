@@ -1,0 +1,24 @@
+💡 Key Difference:
+Cookies = Stored on your browser (remembers info even after closing the site).
+Sessions = Stored on the server (temporary and ends when you log out or close the browser).
+⏳ Can Sessions Be Stored in Cookies?
+Yes! Websites can store session IDs inside cookies to track users across visits. This is called a session cookie.
+
+Would you like a real-world analogy to make it even clearer? 😊
+
+
+
+🔑 Authentication vs. Authorization
+1️⃣ Authentication (Who are you?)
+
+It's the first step where you prove who you are.
+Example: Logging in with your username & password.
+Think of it like showing your ID card to enter a building.
+2️⃣ Authorization (What can you access?)
+
+After authentication, the system checks what you're allowed to do.
+Example: Even after logging in, a normal user can't access admin features.
+Think of it like having a VIP pass that lets you enter only certain rooms.
+🔥 Key Difference:
+Authentication = Are you the right person? (Login step ✅)
+Authorization = What are you allowed to do? (Permissions check ✅)
