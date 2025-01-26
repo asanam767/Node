@@ -19,6 +19,10 @@ mongodbconnection().then(() => {
 
 app.use(bodyParser.json());
 
+//we need to decide which route to authenticate
+app.use(passport.initialize());
+
+
 // Routes
 app.get("/hello", (req, res) => {
   res.send("katta manasa");
@@ -34,16 +38,20 @@ const logRequest = (req, res, next) => {
 //implement logrequest for all endpoints:
 app.use(logRequest);
 
-//we need to decide which route to authenticate
-app.use(passport.initialize());
+
 //since we need to reduce the complexity - let us put this authentication in the form of a middleware
 //so store it in a separate variable
 const localAuthMiddleware=passport.authenticate('local',{session:false});
 
+//this middleware- is local based - we enter username and password we will be authenicating the user
+//JWT based - we will be using the token to authenticate the user
+
+
+
 //passing middleware in between 
 //this is done to get the details of date,time only for "/ endpoint"
 // app.get("/",logRequest, function (req, res) {
-  app.get("/", function (req, res) {
+  app.get("/",localAuthMiddleware, function (req, res) {
   res.send("Welcome to my hotel... How I can help you?");
 });
 
@@ -54,7 +62,8 @@ app.post("/persondetail", userdetails);
 const personRoutes = require("./routes/personRoutes");
 const menuRoutes = require("./routes/menuRoutes");
 
-app.use("/person",localAuthMiddleware,personRoutes);
+app.use("/person",personRoutes);
+
 //we want to authorize menuRoutes too , so we will be using the middleware in this case
 //we have used only for person route for now
 app.use("/menu",menuRoutes);
